@@ -13,8 +13,6 @@ namespace NeuralNetworks
         public List<double[,]> Biases { get; set; }
         public List<double[,]> Weights { get; set; }
 
-        private const int IsBias = 1;
-        private const int NotBias = 0;
         public Network(int[] sizes)
         {
             Sizes = sizes;
@@ -56,6 +54,40 @@ namespace NeuralNetworks
             return weightMatrices;
         }
 
+        public double[] EvalSigmoideFunction(double[] zet)
+        {
+            var outputActivation = new double[zet.Length]; 
+            for (int i = 0; i < zet.Length; i++)
+            {
+                outputActivation[i] = 1 / (1 + Math.Exp(-zet[i]));
+            }
+            return outputActivation;
+        }
+
+        public double[] FeedForward(double[] input, List<double[,]> weights, List<double[,]> biases)
+        {
+            double[] sigmoideInput;
+            for (int i = 0; i < biases.Count; i++)
+            {
+                sigmoideInput = PrepareInputForSigmoide(input, weights[i], biases[i]);
+                input = EvalSigmoideFunction(input);
+            }
+            return new double[input.Length];
+        }
+
+        private double[] PrepareInputForSigmoide(double[] input, double[,] weightMatrix, double[,] biasVector)
+        {
+            double[] inputForSigmoide = new double[biasVector.Length];
+            for (int i = 0; i < biasVector.Length; i++)
+            {
+                for (int j = 0; j < input.Length; j++)
+                {
+                    inputForSigmoide[i] += input[j] * weightMatrix[i, j];
+                }
+                inputForSigmoide[i] -= biasVector[i,1];
+            }
+            return inputForSigmoide;
+        }
     }
 }
 
