@@ -75,7 +75,7 @@ namespace NeuralNetworks
             return new double[input.Length];
         }
 
-        private double[] PrepareInputForSigmoide(double[] input, double[,] weightMatrix, double[,] biasVector)
+        public double[] PrepareInputForSigmoide(double[] input, double[,] weightMatrix, double[,] biasVector)
         {
             double[] inputForSigmoide = new double[biasVector.Length];
             for (int i = 0; i < biasVector.Length; i++)
@@ -84,7 +84,7 @@ namespace NeuralNetworks
                 {
                     inputForSigmoide[i] += input[j] * weightMatrix[i, j];
                 }
-                inputForSigmoide[i] -= biasVector[i,1];
+                inputForSigmoide[i] -= biasVector[i,0];
             }
             return inputForSigmoide;
         }

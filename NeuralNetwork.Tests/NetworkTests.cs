@@ -43,5 +43,22 @@ namespace NeuralNetworks.Tests
             
 
         }
+
+        [Test]
+        public void PrepareInputForSigmoide_Correct_Output_Success()
+        {
+            //Arrange
+            var expectedOutput = 1;
+
+            //Act
+            var actualOutput = _network.PrepareInputForSigmoide(
+                new double[] { 1, 1 }, 
+                new double[,] { { 1, 1 }, { 1, 1 }, { 1, 1 } },
+                new double[,] { { 1 }, { 1 }, { 1 } });
+
+            //Assert
+            Assert.AreEqual(expectedOutput, actualOutput);
+
+        }
     }
 }
