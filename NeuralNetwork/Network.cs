@@ -18,7 +18,7 @@ namespace NeuralNetworks
             Sizes = sizes;
             NumberOfLayers = sizes.Length;
             Biases = CreateBiasMatrices(sizes);
-            Weights = CreateBiasMatrices(sizes);
+            Weights = CreateWeightMatrices(sizes);
         }
 
         private List<double[,]> CreateBiasMatrices(int[] sizes)
@@ -40,7 +40,7 @@ namespace NeuralNetworks
         {
             var weightMatrices = new List<double[,]>();
             var random = new Random();
-            for (int i = 0; i < sizes.Length; i++)
+            for (int i = 0; i < sizes.Length-1; i++)
             {
                 weightMatrices.Add(new double[sizes[i], sizes[i+1]]);
                 for (int j = 0; j < sizes[i]; j++)

@@ -48,16 +48,32 @@ namespace NeuralNetworks.Tests
         public void PrepareInputForSigmoide_Correct_Output_Success()
         {
             //Arrange
-            var expectedOutput = 1;
+            var expectedOutput = 3;
 
             //Act
             var actualOutput = _network.PrepareInputForSigmoide(
                 new double[] { 1, 1 }, 
                 new double[,] { { 1, 1 }, { 1, 1 }, { 1, 1 } },
-                new double[,] { { 1 }, { 1 }, { 1 } });
+                new double[,] { { 1 }, { 1 }, { 1 } }).Sum();
 
             //Assert
             Assert.AreEqual(expectedOutput, actualOutput);
+
+        }
+
+        [Test]
+        public void FeedForward_Run_Success()
+        {
+            //Arrange
+            var input = new double[]{ 1, 1 };
+            var biases = _network.Biases;
+            var weights = _network.Weights;
+
+            //Act
+            var output = _network.FeedForward(input, weights, biases);
+
+            //Assert
+            Assert.Pass();
 
         }
     }
