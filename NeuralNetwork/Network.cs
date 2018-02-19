@@ -82,7 +82,7 @@ namespace NeuralNetworks
             {
                 for (int j = 0; j < input.Length; j++)
                 {
-                    inputForSigmoide[i] += input[j] * weightMatrix[i, j];
+                    inputForSigmoide[i] += input[j] * weightMatrix[j, i];
                 }
                 inputForSigmoide[i] -= biasVector[i,0];
             }

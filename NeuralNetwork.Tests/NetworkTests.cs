@@ -73,7 +73,7 @@ namespace NeuralNetworks.Tests
             var output = _network.FeedForward(input, weights, biases);
 
             //Assert
-            Assert.Pass();
+            Assert.True(output.Length > 0);
 
         }
     }
